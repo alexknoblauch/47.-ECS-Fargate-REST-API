@@ -14,7 +14,7 @@
     "sourceMap": true,
     "types": ["node","express", "jest"],
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["src/*"]
     }
   },
   "include": ["src", "**/*.test.ts"],
