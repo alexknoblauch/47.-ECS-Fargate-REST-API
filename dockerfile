@@ -15,29 +15,3 @@ RUN npm prune --production
 
 EXPOSE 3000
 CMD ["node", "dist/index.js"]  # Wenn kompiliert
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-FROM node:18-alpine AS BUILDER
-
-WORKDIR /app
-COPY package*.json ./
-COPY prisma ./prisma/
-RUN npm ci
-RUN npx prisma generate
