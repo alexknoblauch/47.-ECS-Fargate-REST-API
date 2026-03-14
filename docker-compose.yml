@@ -31,7 +31,6 @@ app:
   ports:
     - '3000:3000'
   environment:
-
     DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/ECS_FARGATE_DB
     REDIS_URL: redis://redis:6379
   depends_on:
