@@ -49,3 +49,45 @@ COPY --from=builder /app/prisma/generated ./prisma/generated
 COPY src ./src
 COPY package*.josn ./
 RUN npm prune --production
+
+EXPOSE 3000
+CMD ['node', 'src/index.ts']
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FROM node:10-alipne AS builder
+
+WORKDIR /app
+COPY package*.json ./
+COPY prisma ./prisma/
+RUN npm ci
+RUN npx prisma generate
+
+FROM node:10-alipne
+WORKDIR /app
+COPY --from=builder ./app/node_modules ./node_modules
+COPY --from=builder ./prisma/generated ./prisma/generated
+COPY src ./src
+COPY package*.josn ./
+RUN npm prune --production
+
+
+EXPOSE 3000
+CMD ['node', 'src/index.ts']
